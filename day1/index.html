@@ -405,9 +405,16 @@ async function signup() {
         password: document.getElementById("signupPassword").value
     };
 
-    // ✅ INPUT VALIDATION (IMPORTANT)
+    // empty check
     if (!user.name || !user.email || !user.password) {
         alert("Please fill all fields");
+        return;
+    }
+
+    // email format check
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(user.email)) {
+        alert("Please enter a valid email address");
         return;
     }
 
@@ -420,7 +427,6 @@ async function signup() {
     });
 
     const result = await response.json();
-
     alert(result.message);
 }
 
