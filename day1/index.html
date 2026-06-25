@@ -374,6 +374,12 @@ async function login() {
         password: document.getElementById("loginPassword").value
     };
 
+    // ✅ INPUT CHECK (IMPORTANT FIX)
+    if (!user.email || !user.password) {
+        alert("Please enter email and password");
+        return;
+    }
+
     const response = await fetch("/login", {
         method: "POST",
         headers: {
@@ -388,14 +394,9 @@ async function login() {
 
     if (result.success) {
         localStorage.setItem("userEmail", user.email);
-
-        // small delay so alert doesn't block redirect
-        setTimeout(() => {
-            window.location.href = "./dashboard.html";
-        }, 200);
+        window.location.href = "./dashboard.html";
     }
 }
-
 async function signup() {
 
     const user = {
@@ -403,6 +404,12 @@ async function signup() {
         email: document.getElementById("signupEmail").value,
         password: document.getElementById("signupPassword").value
     };
+
+    // ✅ INPUT VALIDATION (IMPORTANT)
+    if (!user.name || !user.email || !user.password) {
+        alert("Please fill all fields");
+        return;
+    }
 
     const response = await fetch("/signup", {
         method: "POST",
