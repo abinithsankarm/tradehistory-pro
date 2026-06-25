@@ -388,7 +388,11 @@ async function login() {
 
     if (result.success) {
         localStorage.setItem("userEmail", user.email);
-        window.location.href = "dashboard.html";
+
+        // small delay so alert doesn't block redirect
+        setTimeout(() => {
+            window.location.href = "./dashboard.html";
+        }, 200);
     }
 }
 
