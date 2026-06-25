@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Trading History</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#0b1020;
+    color:white;
+    margin:0;
+    padding:20px;
+}
+
+.header{
+    text-align:center;
+    padding:20px;
+}
+
+h1{
+    color:#00ff88;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+.search-box{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.search-box input{
+    padding:12px;
+    width:300px;
+    border:none;
+    border-radius:10px;
+}
+
+.card{
+    background:#151d34;
+    padding:20px;
+    border-radius:15px;
+    margin:15px 0;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+h2{
+    color:#00ff88;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#00ff88;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.back{
+    text-align:center;
+    margin-top:20px;
+}
+
+a{
+    text-decoration:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Trading History Timeline</h1>
+    <p>Learn how global trading evolved over time</p>
+</div>
+
+<div class="search-box">
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="Search Trading History..."
+        onkeyup="searchHistory()">
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Ancient Trade (3000 BC)</h2>
+        <p>Barter systems allowed people to exchange goods and services without using money.</p>
+    </div>
+
+    <div class="card">
+        <h2>Silk Road (130 BC)</h2>
+        <p>The Silk Road connected Asia, Europe, and Africa, creating one of history's largest trade networks.</p>
+    </div>
+
+    <div class="card">
+        <h2>Medieval Trade Routes</h2>
+        <p>Merchants transported spices, silk, gold, and other valuable goods across continents.</p>
+    </div>
+
+    <div class="card">
+        <h2>Stock Market (1602)</h2>
+        <p>The Amsterdam Stock Exchange became the world's first modern stock exchange.</p>
+    </div>
+
+    <div class="card">
+        <h2>Forex Market</h2>
+        <p>International currency trading expanded with modern banking and global commerce.</p>
+    </div>
+
+    <div class="card">
+        <h2>Electronic Trading (1971)</h2>
+        <p>Computers transformed financial markets through faster and more efficient trading systems.</p>
+    </div>
+
+    <div class="card">
+        <h2>Cryptocurrency Era (2009)</h2>
+        <p>Bitcoin introduced decentralized digital currency and blockchain technology.</p>
+    </div>
+
+</div>
+
+<div class="back">
+    <a href="dashboard.html">
+        <button>Back to Dashboard</button>
+    </a>
+</div>
+
+<script>
+function searchHistory(){
+
+    let input =
+    document.getElementById("searchBox").value.toLowerCase();
+
+    let cards =
+    document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+        if(card.innerText.toLowerCase().includes(input)){
+            card.style.display = "block";
+        }else{
+            card.style.display = "none";
+        }
+
+    });
+}
+</script>
+
+</body>
+</html>
+

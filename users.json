@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Test User",
+    "email": "test@test.com",
+    "password": "1234"
+  },
+  {
+    "name": "abinith",
+    "email": "abinithsankarm.24ece@kongu.edu",
+    "password": "12345"
+  },
+  {
+    "name": "abi",
+    "email": "abinithsankarm.24ece@kongu.edu",
+    "password": "123456"
+  }
+]

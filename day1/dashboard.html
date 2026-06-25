@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TradeHistory Pro Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#0b1020,#111a33);
+    color:white;
+    margin:0;
+}
+
+/* NAVBAR */
+.navbar{
+    background:rgba(17,26,51,0.95);
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
+}
+
+.logo img{
+    height:70px;
+    width:auto;
+}
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:15px;
+}
+
+.nav-links a:hover{
+    color:#00ff88;
+}
+
+.time{
+    color:#00ff88;
+    margin-left:15px;
+}
+
+/* TICKER */
+.ticker{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    width:450px;
+    overflow:hidden;
+    white-space:nowrap;
+    color:#00ff88;
+    font-size:13px;
+}
+
+.ticker span{
+    display:inline-block;
+    padding-left:100%;
+    animation:move 18s linear infinite;
+}
+
+@keyframes move{
+    from{transform:translateX(0);}
+    to{transform:translateX(-100%);}
+}
+
+/* CARD */
+.card{
+    max-width:1000px;
+    margin:40px auto;
+    background:rgba(21,29,52,0.9);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+h1{
+    color:#00ff88;
+}
+
+#welcome{
+    color:#00ff88;
+}
+
+/* STATUS */
+.status{
+    display:inline-block;
+    background:#00ff88;
+    color:black;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* MARKET */
+.market{
+    background:#1c2747;
+    padding:20px;
+    border-radius:15px;
+    margin-top:25px;
+}
+
+/* STATS */
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.box{
+    background:#1f2a48;
+    width:180px;
+    padding:20px;
+    border-radius:15px;
+    transition:.3s;
+}
+
+.box:hover{
+    transform:translateY(-5px);
+}
+
+.box h3{
+    color:#00ff88;
+    margin:0;
+}
+.box p{
+    margin-top:10px;
+    line-height:1.5;
+}
+/* CHART */
+.chart-box{
+    margin-top:30px;
+    background:#1c2747;
+    padding:20px;
+    border-radius:15px;
+}
+
+/* BUTTON */
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#00ff88;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#888;
+    font-size:12px;
+}
+
+@media(max-width:700px){
+    .stats{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .ticker{
+        display:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+
+    <div class="logo">
+    <img src="image.png" alt="TradeHistory Pro" height="50">
+</div>
+
+    <div class="ticker">
+        <span>
+            Trading History • Forex Markets • Stock Markets • Cryptocurrency • Market Education
+        </span>
+    </div>
+
+    <div class="nav-links">
+        <a href="profile.html">Profile</a>
+        <a href="history.html">History</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <span class="time" id="time"></span>
+    </div>
+
+</div>
+
+<!-- DASHBOARD -->
+<div class="card">
+
+    <h1>Dashboard</h1>
+
+    <h2 id="welcome">Welcome Trader</h2>
+<p id="todayDate"></p>
+    <span class="status">MARKET OPEN</span>
+
+    <p>
+        Explore trading history, financial markets, forex, stocks and cryptocurrency.
+    </p>
+
+    <!-- MARKET -->
+    <div class="market">
+
+        <h2 style="color:#00ff88;">Market Overview</h2>
+
+        <div class="stats">
+
+            <div class="box">
+                <h3>BTC</h3>
+                <p>$42,900</p>
+            </div>
+
+            <div class="box">
+                <h3>ETH</h3>
+                <p>$2,350</p>
+            </div>
+
+            <div class="box">
+                <h3>USD/INR</h3>
+                <p>83.25</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+
+        <div class="box">
+            <h3>1500+</h3>
+            <p>Records</p>
+        </div>
+
+        <div class="box">
+            <h3>500+</h3>
+            <p>Articles</p>
+        </div>
+
+        <div class="box">
+            <h3>50+</h3>
+            <p>Guides</p>
+        </div>
+
+        <div class="box">
+            <h3>100+</h3>
+            <p>Events</p>
+        </div>
+
+    </div>
+<div class="chart-box">
+
+    <h2 style="color:#00ff88;">User Profile</h2>
+
+    <div class="stats">
+
+        <div class="box">
+            <h3 id="profileEmail">User</h3>
+            <p>Logged In Account</p>
+        </div>
+
+        <div class="box">
+            <h3>Active</h3>
+            <p>Account Status</p>
+        </div>
+
+        <div class="box">
+            <h3>2026</h3>
+            <p>Member Since</p>
+        </div>
+
+    </div>
+
+</div>
+    <!-- CHART -->
+    <div class="chart-box">
+
+       <h2 style="color:#00ff88;">Bitcoin Market Trend</h2>
+
+        <canvas id="btcChart" height="100"></canvas>
+
+    </div>
+<!-- NEWS SECTION -->
+<div class="chart-box">
+
+<h2 style="color:#00ff88;">Latest Trading News</h2>
+
+<div class="box" style="width:auto;margin:10px auto;">
+<h3>Bitcoin Growth</h3>
+<p>Cryptocurrency adoption continues to grow worldwide.</p>
+</div>
+
+<div class="box" style="width:auto;margin:10px auto;">
+<h3>Global Markets</h3>
+<p>Investors monitor inflation and economic trends.</p>
+</div>
+
+<div class="box" style="width:auto;margin:10px auto;">
+<h3>Forex Update</h3>
+<p>Major currencies remain active as global trade expands.</p>
+</div>
+
+</div>
+
+<!-- QUICK LINKS -->
+<div class="chart-box">
+
+<h2 style="color:#00ff88;">Quick Access</h2>
+
+<a href="history.html">
+<button>History</button>
+</a>
+
+<a href="profile.html">
+<button>Profile</button>
+</a>
+
+<a href="contact.html">
+<button>Contact</button>
+</a>
+
+</div>
+    <button onclick="logout()">Logout</button>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    TradeHistory Pro © 2026 | Educational Trading Platform
+</div>
+
+<script>
+
+// Welcome User
+
+const email = localStorage.getItem("userEmail");
+
+if(email){
+    document.getElementById("welcome").innerText =
+    "Welcome, " + email;
+}
+
+const profileEmail =
+document.getElementById("profileEmail");
+
+if(email && profileEmail){
+    profileEmail.innerText = email;
+}
+// Clock
+function updateTime(){
+    document.getElementById("time").innerText =
+    new Date().toLocaleTimeString();
+}
+
+setInterval(updateTime,1000);
+updateTime();
+
+// Logout
+function logout(){
+    localStorage.removeItem("userEmail");
+    window.location.href="index.html";
+}
+
+// Chart
+const ctx = document.getElementById("btcChart");
+
+new Chart(ctx,{
+    type:"line",
+    data:{
+        labels:["10:00","10:05","10:10","10:15","10:20","10:25","10:30"],
+        datasets:[{
+            label:"BTC Price",
+            data:[42000,42150,41900,42300,42700,42600,42900],
+            borderColor:"#00ff88",
+            backgroundColor:"rgba(0,255,136,0.15)",
+            fill:true,
+            tension:0.4
+        }]
+    },
+    options:{
+        responsive:true,
+        plugins:{
+            legend:{
+                labels:{
+                    color:"white"
+                }
+            }
+        },
+        scales:{
+            x:{
+                ticks:{color:"white"}
+            },
+            y:{
+                ticks:{color:"white"}
+            }
+        }
+    }
+});
+document.getElementById("todayDate").innerText =
+new Date().toDateString();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Profile</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#0b1020;
+    color:white;
+    margin:0;
+}
+
+.container{
+    max-width:700px;
+    margin:50px auto;
+    background:#151d34;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
+
+h1{
+    color:#00ff88;
+}
+
+.profile-box{
+    background:#1f2a48;
+    padding:20px;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#00ff88;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+a{
+    color:#00ff88;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>My Profile</h1>
+
+<div class="profile-box">
+
+<h2 id="userEmail">Trader</h2>
+
+<p>Account Status: Active</p>
+
+<p>Membership: Standard</p>
+
+<p>Interest: Trading History & Markets</p>
+
+</div>
+
+<button onclick="logout()">Logout</button>
+
+<br><br>
+
+<a href="dashboard.html">← Back to Dashboard</a>
+
+</div>
+
+<script>
+
+const email = localStorage.getItem("userEmail");
+
+if(email){
+    document.getElementById("userEmail").innerText = email;
+}
+
+function logout(){
+    localStorage.removeItem("userEmail");
+    window.location.href="index.html";
+}
+
+</script>
+
+</body>
+</html>
