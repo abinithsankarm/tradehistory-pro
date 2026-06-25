@@ -8,19 +8,24 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 👇 THIS IS THE FIX (serve frontend)
+// ✅ Serve frontend files
 app.use(express.static(path.join(__dirname, "day1")));
 
-const FILE = "users.json";
+const FILE = path.join(__dirname, "users.json");
 
-// Home page → index.html
+// ✅ Home route (IMPORTANT FIX)
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "day1", "index.html"));
 });
 
-// signup
+// ✅ Signup API
 app.post("/signup", (req, res) => {
-    const users = JSON.parse(fs.readFileSync(FILE));
+    let users = [];
+
+    // avoid crash if file empty or missing
+    if (fs.existsSync(FILE)) {
+        users = JSON.parse(fs.readFileSync(FILE, "utf8"));
+    }
 
     users.push(req.body);
 
@@ -32,9 +37,13 @@ app.post("/signup", (req, res) => {
     });
 });
 
-// login
+// ✅ Login API
 app.post("/login", (req, res) => {
-    const users = JSON.parse(fs.readFileSync(FILE));
+    let users = [];
+
+    if (fs.existsSync(FILE)) {
+        users = JSON.parse(fs.readFileSync(FILE, "utf8"));
+    }
 
     const user = users.find(
         u => u.email === req.body.email && u.password === req.body.password
@@ -47,7 +56,7 @@ app.post("/login", (req, res) => {
     }
 });
 
-// IMPORTANT: use Render port
+// ✅ Render port fix
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
