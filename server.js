@@ -6,11 +6,11 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+app.use(express.static("day1"));
 const FILE = "users.json";
 
 app.get("/", (req, res) => {
-    res.send("TradeHistoryPro Server Running");
+    res.sendFile(__dirname + "/day1/index.html");
 });
 
 app.post("/signup", (req, res) => {
