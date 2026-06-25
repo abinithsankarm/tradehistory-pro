@@ -109,3 +109,11 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log("Server running on port", PORT);
 });
+app.get("/users", (req, res) => {
+    if (fs.existsSync(FILE)) {
+        const users = JSON.parse(fs.readFileSync(FILE, "utf8"));
+        res.json(users);
+    } else {
+        res.json([]);
+    }
+});
