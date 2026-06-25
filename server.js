@@ -1,18 +1,24 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
+const path = require("path");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("day1"));
+
+// 👇 THIS IS THE FIX (serve frontend)
+app.use(express.static(path.join(__dirname, "day1")));
+
 const FILE = "users.json";
 
+// Home page → index.html
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/day1/index.html");
+    res.sendFile(path.join(__dirname, "day1", "index.html"));
 });
 
+// signup
 app.post("/signup", (req, res) => {
     const users = JSON.parse(fs.readFileSync(FILE));
 
@@ -26,28 +32,24 @@ app.post("/signup", (req, res) => {
     });
 });
 
+// login
 app.post("/login", (req, res) => {
     const users = JSON.parse(fs.readFileSync(FILE));
 
     const user = users.find(
-        u =>
-        u.email === req.body.email &&
-        u.password === req.body.password
+        u => u.email === req.body.email && u.password === req.body.password
     );
 
-    if(user){
-        res.json({
-            success:true,
-            message:"Login Successful"
-        });
-    }else{
-        res.json({
-            success:false,
-            message:"Invalid Email or Password"
-        });
+    if (user) {
+        res.json({ success: true, message: "Login Successful" });
+    } else {
+        res.json({ success: false, message: "Invalid Email or Password" });
     }
 });
 
-app.listen(3000, () => {
-    console.log("Server running at http://localhost:3000");
+// IMPORTANT: use Render port
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log("Server running on port", PORT);
 });
